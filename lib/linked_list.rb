@@ -28,4 +28,15 @@ module LinkedList
     n4.reverse_list
     n1.print_values
   end
+
+  def self.run_example_cycle_detection
+    n1 = Node.new(732)
+    n2 = Node.new(755, n1)
+    n3 = Node.new(768, n2)
+    n4 = Node.new(978, n3)
+    n5 = Node.new(978, n4)
+    n4 = Node.new(978, n2)
+
+    n4.detect_cycle
+  end
 end
