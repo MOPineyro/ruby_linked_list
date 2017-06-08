@@ -21,16 +21,28 @@ class Node
     end
   end
 
-  def detect_cycle(head_node = self, fast_pointer = nil, slow_pointer = nil)
-    fast_pointer ||= head_node
-    slow_pointer ||= head_node
+  def detect_cycle(fast_pointer = nil, slow_pointer = nil)
+    start_node = self
+    fast_pointer ||= self
+    slow_pointer ||= self
 
-    unless fast_pointer.nil? && slow_pointer.nil? && fast_pointer.next_node.nil?
-      if fast_pointer == slow_pointer
-        puts "found loop at node with value #{fast_pointer.node_val} - pointing to node with value #{fast_pointer.next_node.node_val}"
-      else
-        detect_cycle(@fast_pointer.next_node.next_node, slow_pointer.next_node)
+    while !slow_pointer.nil? && !fast_pointer.nil? && !fast_pointer.next_node.nil?
+      slow_pointer = slow_pointer.next_node
+      fast_pointer = fast_pointer.next_node.next_node
+
+      if slow_pointer == fast_pointer
+        slow_pointer = start_node
+        while fast_pointer != slow_pointer
+          slow_pointer = slow_pointer.next_node
+          fast_pointer = fast_pointer.next_node
+        end
+        return "Found loop - node: #{slow_pointer} - value: #{slow_pointer.node_val}"
       end
     end
+
+    puts "No Loop"
   end
 end
+
+
+

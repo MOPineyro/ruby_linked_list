@@ -30,13 +30,37 @@ module LinkedList
   end
 
   def self.run_example_cycle_detection
-    n1 = Node.new(732)
-    n2 = Node.new(755, n1)
-    n3 = Node.new(768, n2)
-    n4 = Node.new(978, n3)
-    n5 = Node.new(978, n4)
-    n4 = Node.new(978, n2)
+    # Loop
+    n1 = Node.new(10)
+    n2 = Node.new(20, n1)
+    n3 = Node.new(30, n2)
+    n4 = Node.new(40, n3)
+    n5 = Node.new(50, n4)
+    n6 = Node.new(50, n5)
+    n1.next_node = n4
 
-    n4.detect_cycle
+    # No Loop
+    n_1 = Node.new(10)
+    n_2 = Node.new(20, n_1)
+    n_3 = Node.new(30, n_2)
+    n_4 = Node.new(40, n_3)
+
+    puts "Loop: \n"
+    puts n6.detect_cycle
+
+    puts "No Loop: \n"
+    puts n_4.detect_cycle
   end
 end
+
+
+
+
+
+
+
+
+
+
+
+
